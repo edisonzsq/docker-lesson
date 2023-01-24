@@ -6,6 +6,8 @@
 
 ## Start up
 
+This is a MERN stack demo.
+
 On your Terminal, change directory to the root folder, then run the following command:
 
 ```sh
