@@ -21,8 +21,8 @@ docker compose up --build
 ## Backend
 
 There are two APIs implemented:
-- POST /employees
-- GET /employees
+- POST http://localhost:8008/employees
+- GET http://localhost:8008/employees
 
 The payload to create a new employees is:
 ```json
