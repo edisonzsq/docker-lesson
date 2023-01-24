@@ -1,0 +1,44 @@
+version: '3.8'
+services:
+  fe-app:
+    build:
+      dockerfile: './client/Dockerfile'
+    depends_on:
+      - be-app
+    ports:
+      - "3003:3000"
+    volumes:
+      - ./client:/fe-app/
+    links:
+      - be-app
+
+  be-app:
+    build:
+      dockerfile: './server/Dockerfile'
+    depends_on:
+      - mongo-container
+    ports:
+      - "8008:8000"
+    volumes:
+      - ./server:/be-app/
+    links:
+      - mongo-container
+    environment:
+      dbUsername: dockeruser
+      dbPassword: dockerpass
+      dbHost: mongo-container
+      dbPort: 27017
+      dbName: dockerdb
+  
+  mongo-container:
+    image: mongo:latest
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: dockeruser
+      MONGO_INITDB_ROOT_PASSWORD: dockerpass
+      MONGO_INITDB_DATABASE: dockerdb
+    ports:
+      - 27018:27017
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./mongodb_data_container:/data/db
