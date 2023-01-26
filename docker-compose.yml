@@ -1,6 +1,7 @@
 version: '3.8'
 services:
   fe-app:
+    container_name: frontend-demo-app
     build:
       dockerfile: './client/Dockerfile'
     depends_on:
@@ -13,6 +14,7 @@ services:
       - be-app
 
   be-app:
+    container_name: backend-demo-app
     build:
       dockerfile: './server/Dockerfile'
     depends_on:
