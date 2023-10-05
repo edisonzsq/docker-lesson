@@ -26,7 +26,7 @@ function App() {
     <div>
       <h1>Employees Data</h1>
       <ul>
-        {employees.length > 0 ? <DisplayEmployees></DisplayEmployees> : null}
+        {employees.length > 0 ? <DisplayEmployees></DisplayEmployees> : <div>No data yet. Please see readme.md file on how to create data.</div>}
       </ul>
     </div>
   );

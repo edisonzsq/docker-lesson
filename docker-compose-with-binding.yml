@@ -8,6 +8,8 @@ services:
       - be-app
     ports:
       - "3003:3000"
+    volumes:
+      - ./client:/fe-app/
     links:
       - be-app
 
@@ -19,6 +21,8 @@ services:
       - mongo-container
     ports:
       - "8008:8000"
+    volumes:
+      - ./server:/be-app/
     links:
       - mongo-container
     environment:
