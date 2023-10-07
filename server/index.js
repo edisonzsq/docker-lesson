@@ -6,7 +6,11 @@ const mongoose = require('mongoose');
 const httpStatus = require('http-status')
 const mongoUrl = `mongodb://${process.env.dbUsername}:${process.env.dbPassword}@${process.env.dbHost}:${process.env.dbPort}/${process.env.dbName}`;
 
-mongoose.connect(mongoUrl)
+const options = {
+  connectTimeoutMS: 20000, // Connection timeout in milliseconds
+};
+
+mongoose.connect(mongoUrl, options)
   .then(() => console.log(`Connected to mongodb: ${mongoUrl}`))
   .catch(e => {
     console.log(e);
